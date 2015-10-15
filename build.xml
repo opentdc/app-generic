@@ -5,7 +5,7 @@
 	<property name="java.build.platform" value="jre-1.7" />
 	<property name="src.dir" value="src/java" />
 	<property name="build.dir" value="build/${java.build.platform}/bin" />
-	
+
 	<path id="project.class.path">
 		<fileset dir="${build.dir}" includes="*.class" />
 		<fileset dir="../opt/google/${java.build.platform}/gson/lib/" includes="*.jar" />
@@ -19,19 +19,19 @@
 			destdir="${build.dir}"
 			source="1.7" target="1.7" nowarn="false"
 			debug="true" debuglevel="lines,vars,source">
-			<exclude name="**/test/**"/> 
+			<exclude name="**/test/**"/>
 			<classpath refid="project.class.path"/>
 		</javac>
 	</target>
 
-  <target name="deliverables" depends="javac" description="Create deliverables">
-    <jar destfile="../${java.build.platform}/app-generic/lib/opentdc-app-generic.jar">
-    	<zipfileset dir="${build.dir}" /> 
-  	</jar>
-  </target>
-	
+	<target name="deliverables" depends="javac" description="Create deliverables">
+		<jar destfile="../${java.build.platform}/app-generic/lib/opentdc-app-generic.jar">
+			<zipfileset dir="${build.dir}" />
+		</jar>
+	</target>
+
 	<target name="clean" description="Cleans this project">
 		<delete dir="${build.dir}" failonerror="false" />
 	</target>
-	
+
 </project>
