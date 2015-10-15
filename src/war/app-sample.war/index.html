@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="js/font-awesome/css/font-awesome.min.css">
+	<script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<h1>App - Sample</h1>
+		<h4>Get/Update contact by Id</h4>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="input-group">
+					<input type="text" class="form-control" id="contact-id" value="1">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="javascript:$.ajax({url: 'api/provider/Opentdc/segment/Test/contact/' + encodeURIComponent($('#contact-id').val()), type: 'GET', contentType: 'application/json', complete: function(data){$('#contact-data').val(JSON.stringify(JSON.parse(data.responseText),null,2));}});">Get!</button>
+						<button class="btn btn-default" type="button" onclick="javascript:$.ajax({url: 'api/provider/Opentdc/segment/Test/contact/' + encodeURIComponent($('#contact-id').val()), type: 'POST', data: $('#contact-data').val(), contentType: 'application/json', complete: function(data){$('#contact-data').val(JSON.stringify(JSON.parse(data.responseText),null,2));}});">Update!</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<textarea id="contact-data" class="form-control" style="font-family:monospace;" rows="10"></textarea>
+			</div>
+		</div>		
+		<h4>Find contacts by query</h4>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="input-group">
+					<input type="text" class="form-control" id="contacts-query" value="((@.lastName >= 'A') && (@.disabled == false))">
+					<input type="text" class="form-control" id="contacts-position" value="0">
+					<input type="text" class="form-control" id="contacts-size" value="20">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="javascript:$.ajax({url: 'api/provider/Opentdc/segment/Test/contact?query=' + encodeURIComponent($('#contacts-query').val()) + '&position=' + $('#contacts-position').val() + '&size=' + $('#contacts-size').val(), type: 'GET', contentType: 'application/json', complete: function(data){$('#contacts-data').val(JSON.stringify(JSON.parse(data.responseText),null,2));}});">Find!</button>
+					</span>
+				</div>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<textarea id="contacts-data" class="form-control" style="font-family:monospace;" rows="10"></textarea>
+			</div>
+		</div>		
+		<h4>Create contact</h4>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="javascript:$.ajax({url: 'api/provider/Opentdc/segment/Test/contact/', type: 'POST', data: $('#create-contact-data').val(), contentType: 'application/json', complete: function(data){$('#create-contact-data').val(JSON.stringify(JSON.parse(data.responseText),null,2));}});">Create!</button>
+					</span>
+				</div>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<textarea id="create-contact-data" class="form-control" style="font-family:monospace;" rows="10"></textarea>
+			</div>
+		</div>
+	</div>
+	<script>
+	</script>
+</body>
+</html>
